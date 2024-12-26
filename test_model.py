@@ -3,16 +3,18 @@ import cv2
 import numpy as np
 from CombineModel_jt import CombineModel
 import jittor as jt
+import argparse
 
 jt.flags.use_cuda = 1
 
 # Get paths from command line arguments (input image and output image)
-if len(sys.argv) != 3:
-    print("Usage: python3 test_model.py <input_image_path> <output_image_path>")
-    sys.exit(1)
+parser = argparse.ArgumentParser(description="Process an image with the model.")
+parser.add_argument("input_image_path", type=str, help="Path to the input image.")
+parser.add_argument("output_image_path", type=str, help="Path to save the output image.")
+args = parser.parse_args()
 
-input_image_path = sys.argv[1]
-output_image_path = sys.argv[2]
+input_image_path = args.input_image_path
+output_image_path = args.output_image_path
 
 # Parameters for CombineModel (you can adjust these as needed)
 params = [
